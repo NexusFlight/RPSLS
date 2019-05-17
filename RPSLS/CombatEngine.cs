@@ -21,10 +21,11 @@ namespace RPSLS
         public string Fight()
         {
             //get the gestures winTables
-            int[] combat1WinTab = combatant1.GeteWinTable();
-            int[] combat2WinTab = combatant2.GeteWinTable();
+            GestureName[] combat1WinTab = combatant1.GeteWinTable();
+            GestureName[] combat2WinTab = combatant2.GeteWinTable();
             string userWin = "You Win!";
             string userLose = "You Lost!";
+
            //combatant 1s win conditions
             if (combatant2.GetChoice() == combat1WinTab[0])
             {

@@ -4,6 +4,15 @@ using System.Text;
 
 namespace RPSLS
 {
+    public enum GestureName
+    {
+        Scissors = 0,
+        Paper,
+        Rock,
+        Lizard,
+        Spock
+    }
+
     class Gesture
     {
         /**
@@ -20,23 +29,16 @@ namespace RPSLS
          */
 
         //name of Gestures
-        public enum GestureName
-        {
-            Scissors = 0,
-            Paper,
-            Rock,
-            Lizard,
-            Spock
-        }
+        
 
         //jagged int array to store how each Gesture can win. Readonly and static as these are the same for all Gestures
-        private static readonly int[][] winTable = new int[][] 
+        private static readonly GestureName[][] winTable = new GestureName[][] 
         { 
-            new int[]{ 1, 3 }, //scissors
-            new int[]{ 2, 4 }, //paper
-            new int[]{ 0, 3 }, //rock
-            new int[]{ 1, 4 }, //lizard
-            new int[]{ 0, 2 }  //spock
+            new GestureName[]{ GestureName.Paper, GestureName.Lizard }, //scissors
+            new GestureName[]{ GestureName.Rock, GestureName.Spock }, //paper
+            new GestureName[]{ GestureName.Scissors, GestureName.Lizard }, //rock
+            new GestureName[]{ GestureName.Paper, GestureName.Spock }, //lizard
+            new GestureName[]{ GestureName.Scissors, GestureName.Rock }  //spock
         };
 
         //jagged string array with victory text for each gesture. Readonly and static as these are the same for all Gestures
@@ -50,23 +52,23 @@ namespace RPSLS
         };
 
         //store the users gesture choice
-        private int gestureChoice;
+        private GestureName gestureChoice;
 
         //constructor that takes the users choice
         public Gesture(GestureName gestureChoice)
         {
             //set instance variable to inputted choice
-            this.gestureChoice = (int)gestureChoice;
+            this.gestureChoice = gestureChoice;
         }
 
         //returns the win table for the selected gesture
-        public int[] GeteWinTable()
+        public GestureName[] GeteWinTable()
         {
-            return winTable[gestureChoice];
+            return winTable[(int)gestureChoice];
         }
 
         //returns the gesture choice
-        public int GetChoice()
+        public GestureName GetChoice()
         {
             return gestureChoice;
         }
@@ -74,13 +76,13 @@ namespace RPSLS
         //returns the winText for the selected choice
         public string[] GetWinText()
         {
-            return winText[gestureChoice];
+            return winText[(int)gestureChoice];
         }
 
         //Overridden ToString for use in displaying result
         public override string ToString()
         {
-            return ((GestureName)gestureChoice).ToString();
+            return (gestureChoice).ToString();
         }
     }
 }

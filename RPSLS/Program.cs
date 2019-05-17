@@ -4,6 +4,7 @@ namespace RPSLS
 {
     class Program
     {
+
         static void Main(string[] args)
         {
             //create new instance of the random class 
@@ -17,7 +18,7 @@ namespace RPSLS
             for (int i = 0; i < 5; i++)
             {
                 //print out enum strings
-                Console.WriteLine("{0}){1}",i+1,(Gesture.GestureName)i);
+                Console.WriteLine("{0}){1}",i+1,(GestureName)i);
             }
             //declare and initilize variables
             string input = "";
@@ -33,9 +34,9 @@ namespace RPSLS
             } while (userSelction > 5 || userSelction < 1);
 
             //create a new instance of the Gesture class with the users selection - 1 as we lied to the user about numbers
-            Gesture gest1 = new Gesture((Gesture.GestureName)userSelction-1);
+            Gesture gest1 = new Gesture((GestureName)userSelction-1);
             //create the random selections gesture
-            Gesture gest2 = new Gesture((Gesture.GestureName)compSelection);
+            Gesture gest2 = new Gesture((GestureName)compSelection);
             //create a combat engine with the gestures
             CombatEngine combat = new CombatEngine(gest1, gest2);
             //output the result of the fight
