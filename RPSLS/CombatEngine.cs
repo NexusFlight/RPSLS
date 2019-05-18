@@ -23,29 +23,35 @@ namespace RPSLS
             //get the gestures winTables
             GestureName[] combat1WinTab = combatant1.GeteWinTable();
             GestureName[] combat2WinTab = combatant2.GeteWinTable();
+            
+            //get the gesture choice for each combatant
+            GestureName combatant1Choice = combatant1.GetChoice();
+            GestureName combatant2Choice = combatant2.GetChoice();
+
+            //win lose draw strings
             string userWin = "You Win!";
             string userLose = "You Lost!";
+            string userDraw = "You Drew... ";
 
-           //combatant 1s win conditions
-            if (combatant2.GetChoice() == combat1WinTab[0])
+            //combatant1 win condition check loop this is the User
+            for (int i = 0; i < combat1WinTab.Length; i++)
             {
-               return string.Concat(userWin,winTextGenerator(0, combatant1,combatant2));
+                //if the 
+                if (combatant2Choice == combat1WinTab[i])
+                {
+                    return string.Concat(userWin, winTextGenerator(i, combatant1, combatant2));
+                }
             }
-            else if(combatant2.GetChoice() == combat1WinTab[1])
+            //combatant2 win condition check loop this is the random selection
+            for (int i = 0; i < combat2WinTab.Length; i++)
             {
-                return string.Concat(userWin, winTextGenerator(1, combatant1, combatant2));
-            }
-            //combatant 2s win conditions
-            else if (combatant1.GetChoice() == combat2WinTab[0])
-            {
-                return string.Concat(userLose, winTextGenerator(0, combatant2, combatant1));
-            }
-            else if (combatant1.GetChoice() == combat2WinTab[1])
-            {
-                return string.Concat(userLose, winTextGenerator(1, combatant2, combatant1));
+                if (combatant1Choice == combat2WinTab[i])
+                {
+                    return string.Concat(userLose, winTextGenerator(i, combatant2, combatant1));
+                }
             }
 
-            return string.Concat("You Drew... ",combatant1," VS ",combatant2);
+            return string.Concat(userDraw,combatant1," VS ",combatant2);
         }
 
         //win text generator determines the win text to return

@@ -15,7 +15,7 @@ namespace RPSLS
             Console.WriteLine("Welcome to Rock Paper Sissors Lizard Spock!");
             Console.WriteLine("Please Select Your Metaphorical Weapon");
             //loop over enum
-            for (int i = 0; i < 5; i++)
+            for (int i = (int)GestureName.MinValue; i <(int)GestureName.MaxValue; i++)
             {
                 //print out enum strings
                 Console.WriteLine("{0}){1}",i+1,(GestureName)i);
@@ -31,7 +31,7 @@ namespace RPSLS
                 input = Console.ReadLine();
                 //try to get an integer from input
                 int.TryParse(input, out userSelction);
-            } while (userSelction > 5 || userSelction < 1);
+            } while (userSelction > (int)GestureName.MaxValue || userSelction < (int)GestureName.MinValue+1);
 
             //create a new instance of the Gesture class with the users selection - 1 as we lied to the user about numbers
             Gesture gest1 = new Gesture((GestureName)userSelction-1);

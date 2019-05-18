@@ -4,8 +4,11 @@ using System.Text;
 
 namespace RPSLS
 {
+    //name of Gestures
     public enum GestureName
     {
+        MinValue = Scissors,//Min Max are first as if they are last the ToString method outputs MinValue instead of Scissors
+        MaxValue = Spock + 1,//If extra gestures are added this will need adjusted
         Scissors = 0,
         Paper,
         Rock,
@@ -27,11 +30,8 @@ namespace RPSLS
          *               0                      2
          * Spock smashes Scissors and vaporizes Rock
          */
-
-        //name of Gestures
-        
-
-        //jagged int array to store how each Gesture can win. Readonly and static as these are the same for all Gestures
+         
+        //jagged GestureName array to store how each Gesture can win. Readonly and static as these are the same for all Gestures
         private static readonly GestureName[][] winTable = new GestureName[][] 
         { 
             new GestureName[]{ GestureName.Paper, GestureName.Lizard }, //scissors
